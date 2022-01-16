@@ -11,9 +11,6 @@ class Tree(object):
         self.rootNode = node
         self.dot = graphviz.Digraph(comment='My Tree')
 
-    def getRoot(self):
-        return self.rootNode
-
     def __constructGraphNode(self, node):
         self.dot.node(node.getContentStr())
 
@@ -77,6 +74,21 @@ class Tree(object):
             if root.hasRightChild():
                 return self.hasNode(node, root.right)
             return False
+
+    def getRoot(self):
+        return self.rootNode
+
+    def getMin(self, node:Node):
+        if not node.hasLeftChild():
+            return node
+
+        return self.getMin(node.left)
+
+    def getMax(self, node:Node):
+        if not node.hasRightChild():
+            return node
+
+        return self.getMax(node.right)
 
     def render_graph(self, view=True):
         self.dot = graphviz.Digraph(comment='My Tree')

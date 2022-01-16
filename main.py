@@ -1,3 +1,5 @@
+import sys
+
 from tree.tree import Tree, Node
 
 tree = Tree(Node(8))
@@ -18,7 +20,12 @@ tree.addNode(Node(16), root)
 print("Traverse after add(s)")
 tree.traverse(tree.getRoot())
 
+print("Min Node:", tree.getMin(root))
+print("Max Node:", tree.getMax(root))
+
 print("Has Node 4", tree.hasNode(Node(4), root))
 print("Has Node 5", tree.hasNode(Node(5), root))
 
-#tree.render_graph()
+if len(sys.argv) > 1:
+    if sys.argv[1].lower() == "render":
+        tree.render_graph()
