@@ -44,6 +44,15 @@ class Tree(object):
 
         self.__traverse(node, construct_graph, print_visit)
 
+    def tree_sum(self, root: Node):
+        cv = root.getContent()
+        if root.hasChildren():
+            if root.hasLeftChild():
+                cv += self.tree_sum(root.left)
+            if root.hasRightChild():
+                cv += self.tree_sum(root.right)
+        return cv
+
     def addNode(self, node: Node, root: Node):
         rootVal = root.getContent()
         nodeVal = node.getContent()
